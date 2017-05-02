@@ -1,0 +1,154 @@
+<html ng-app="app">
+
+<head>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+
+<body ng-controller="budgettrackerController as btCtrl">
+  <div class="style jumbotron">
+    <center>
+      <h1>Budget Tracker</h1>
+    </center>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-success">
+          <div class="panel-heading">Income Entries</div>
+          <div class="panel-body">
+            <form>
+              <p>Description</p>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                <input type="text" class="form-control" ng-model="btCtrl.newIncome.description">
+              </div>
+              <p>Amount</p>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                <input type="number" class="form-control" ng-model="btCtrl.newIncome.amount">
+              </div>
+            </form>
+            <!-- <pre>{{btCtrl | json}}</pre>
+          The <pre> element is great to show how objects are nested inside arrays. -->
+            <button type="button" class="form-control btn btn-success" ng-click="btCtrl.addIncome()"> + Add Income </button>
+            <br>
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="income in btCtrl.incomes">
+                    <td>
+                      {{income.description}}
+                    </td>
+                    <td>
+                      $ {{income.amount}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">Expense Entries</div>
+          <div class="panel-body">
+            <form>
+              <p>Description</p>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                <input type="text" class="form-control" ng-model="btCtrl.newExpense.description">
+              </div>
+              <p>Amount</p>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                <input type="number" class="form-control" ng-model="btCtrl.newExpense.amount">
+              </div>
+            </form>
+            <button type="button" class="form-control btn btn-danger" ng-click="btCtrl.addExpense()"> + Add Expense </button>
+            <br>
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="expense in btCtrl.expenses">
+                    <td>
+                      {{expense.description}}
+                    </td>
+                    <td>
+                      $ {{expense.amount}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="center-block">
+        <div class="panel panel-info">
+          <div class="panel-heading">Summary</div>
+          <div class="panel-body">
+            <form>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Total Income</th>
+                    <th>Total Expenses</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>$ {{btCtrl.getTotalIncome()}}</td>
+                    <td>$ {{btCtrl.getTotalExpenses()}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>CashFlow
+                      <th>
+                  </tr>
+                  <tr>
+                    <td>$ {{btCtrl.getTotalIncome() - btCtrl.getTotalExpenses()}}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- endbower -->
+
+  <!-- inject:js -->
+  <script src="app/app.module.js"></script>
+  <script src="app/app.controller.js"></script>
+  <!-- endinject -->
+</body>
+
+</html>
